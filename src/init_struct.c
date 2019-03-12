@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 07:56:19 by nivergne          #+#    #+#             */
-/*   Updated: 2019/03/12 16:46:43 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/03/12 18:21:32 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	print_struct(t_coord *m)
 	ft_printf("fd = %d\n", m->fd);
 	ft_printf("x_max = %d\n", m->x_max);
 	ft_printf("y_max = %d\n", m->y_max);
-	while (m->coord[i++])
+	ft_printf("coord to follow\n");
+	while (i++ < 209)
 		ft_printf("coord[%d] = %d\n", i, m->coord[i]);
 }

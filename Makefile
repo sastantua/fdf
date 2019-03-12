@@ -6,7 +6,7 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/03/12 16:45:29 by nivergne         ###   ########.fr        #
+#    Updated: 2019/03/12 18:06:41 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ CC = gcc $(CFLAGS) $(INC_PATH)
 LIB = libft/libft.a
 
 GRN =		\x1b[32m
-BLU =		\x1b[33m
+YEL =		\x1b[33m
+BLU =		\x1b[34m
 RED =		\x1b[31m
 PUR =		\x1b[35m
 CYA =		\x1b[36m
@@ -36,7 +37,7 @@ END =		\x1b[0m
 all: $(NAME)
 
 $(NAME): makelib obj $(LIB) $(OBJ)
-	@echo "$(GRN)$(BOL)FDF [OK]$(END)"
+	@echo "$(BOL)$(GRN)FDF			$(BLU)compile$(GRN)		[OK]$(END)"
 	@$(CC) $(CFLAGS) $(INC_PATH) $(OBJ) $(MLX) -L libft -lft -o $(NAME)
 
 makelib:
@@ -49,11 +50,11 @@ obj/%.o: src/%.c
 	@printf "\33[2K"
 
 debug: makelib obj $(LIB) $(OBJ)
-	@echo "$(GRN)$(BOL)FDF [OK]$(END)"
+	@echo "$(BOL)$(GRN)FDF			$(BLU)debug$(GRN)		[OK]$(END)"
 	@$(CC) $(CFLAGS) -g3 $(INC_PATH) $(OBJ) $(MLX) -L libft -lft -o $(NAME)_debug
 
 fsanitize: makelib obj $(LIB) $(OBJ)
-	@echo "$(GRN)$(BOL)FDF [OK]$(END)"
+	@echo "$(BOL)$(GRN)FDF			$(BLU)fsanitize$(GRN)	[OK]$(END)"
 	@$(CC) $(CFLAGS) -g3 -fsanitize=address $(INC_PATH) $(OBJ) $(MLX) -L libft -lft -o $(NAME)_fsanitize
 
 obj:
