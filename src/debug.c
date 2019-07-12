@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_xmax.c                                        :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/14 07:56:19 by nivergne          #+#    #+#             */
-/*   Updated: 2019/03/12 17:33:58 by nivergne         ###   ########.fr       */
+/*   Created: 2019/07/12 17:57:22 by nivergne          #+#    #+#             */
+/*   Updated: 2019/07/12 18:47:14 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "ft_printf.h"
 
-int		init_xmax(char *file_name, t_coord *m)
+void	print_struct(t_map *m)
 {
 	int i;
-	int ret;
-	int res;
+	int j;
 
 	i = 0;
-	ret = 0;
-	res = 0;
-	if ((ret = get_one_line(m->fd, &m->line)) == 1)
+	j = 0;
+	ft_printf("fd = %d\n", m->fd);
+	ft_printf("x_max = %d\n", m->x_max);
+	ft_printf("y_max = %d\n", m->y_max);
+	while (m->map[i] != NULL)
 	{
-		m->x_len = ft_strlen(m->line);
-		while (m->line[i])
+		j = 0;
+		ft_printf("line = %d\n", i);
+		while (m->map[i][j] != -424242)
 		{
-			if (check_digit(m->line[i]))
-			{
-				while (check_digit(m->line[i]))
-					i++;
-				res++;
-			}
-			i++;
+			ft_printf("m->map[%d][%d] = %d\n", i, j, m->map[i][j]);
+			j++;
 		}
-		// ft_printf("res = %d\n", res);
-		m->x_max = res;
+		i++;
 	}
-	close(m->fd);
-	ft_strdel(&m->line);
-	return (0);
 }

@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/14 07:50:30 by nivergne          #+#    #+#             */
-/*   Updated: 2019/03/12 16:34:08 by nivergne         ###   ########.fr       */
+/*   Created: 2019/07/11 17:23:15 by nivergne          #+#    #+#             */
+/*   Updated: 2019/07/12 14:17:08 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "fdf.h"
 
-int		check_digit(char c)
+int		error_msg(char *error_msg)
 {
-	if ((c >= '0' && c <= '9') || c == '-')
-		return (1);
-	return (0);
+	ft_putendl(error_msg);
+	return (-1);
 }
 
-int		check_map(char c)
+int		gnl_error_free(char **line, char *error_msg)
 {
-	if ((c >= '0' && c <= '9') || c == '-' || c == ' ' || c == '\n' || c == '\0')
-		return (1);
-	return (0);
-}
-
-int		check_map2(char c)
-{
-	if ((c >= '0' && c <= '9') || c == '-' || c == ' ' || c == '\n')
-		return (1);
-	return (0);
+	ft_putendl(error_msg);
+	ft_strdel(line);
+	return (-1);
 }

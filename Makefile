@@ -6,18 +6,30 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/03/12 18:06:41 by nivergne         ###   ########.fr        #
+#    Updated: 2019/07/12 17:57:41 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-INC = $(shell find include -type f | grep -e \.h$$)
-SRC = $(shell find src -type f | grep -e \.c$$)
+SRC_FDF =			main.c\
+					error.c\
+					init_struct.c\
+					init_fd.c\
+					get_dimension.c\
+					parse_line.c\
+					allocate_map.c\
+					fill_map.c\
+					debug.c
+
+
+SRC = $(addprefix $(SRC_PATH)/, $(SRC_FDF))
 OBJ = $(SRC:src/%.c=obj/%.o)
 
-MLX = -lmlx -framework OpenGL -framework AppKit
+SRC_PATH = src/
+INC = -I./include
 INC_PATH = -Iinclude/ -Ilibft/include -Imlx/
+MLX = -framework OpenGL -framework AppKit
 GCC_FLAG = -Wall -Wextra -Werror
 CC = gcc $(CFLAGS) $(INC_PATH)
 LIB = libft/libft.a
@@ -68,7 +80,7 @@ clean: clean_lib
 
 fclean: clean
 	@make -C libft fclean
-	@echo "$(RED)Removing $(NAME)$(END)"
+	@echo "$(CYA)$(BOL)FDF			$(BLU)bin$(END)$(RED)		[delete]$(END)"
 	@/bin/rm -f $(NAME)
 
 re: fclean all
@@ -76,9 +88,7 @@ re: fclean all
 .PHONY: all clean fclean re libft_clean proj_clean
 
 
-#patsubst
-#remplace le deuxieme arg par le troisieme
-
-#basename 
-#remplace le nom en .c par le non sans le .c
-
+#INC = $(shell find include -type f | grep -e \.h$$)
+#SRC = $(shell find src -type f | grep -e \.c$$)
+#patsubst: remplace le deuxieme arg par le troisieme
+#basename: remplace le nom en .c par le non sans le .c

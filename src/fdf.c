@@ -6,9 +6,11 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:57:58 by nivergne          #+#    #+#             */
-/*   Updated: 2019/01/23 23:58:18 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/10 10:38:20 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#include "mlx.h"
+#include "libft.h"
+#include "ft_printf.h"
