@@ -6,18 +6,24 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/12 18:45:00 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:00:49 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# define ERR_1 "error in get_dimension (invalid input)"
-# define ERR_2 "error in get_dimension (invalid map size)"
-# define ERR_3 "error in allocate_map (malloc error)"
-# define ERR_4 "error in fill_map (invalid input)"
-# define ERR_5 "error in fill_map (invalid line size)"
+# define ERR_ARG "Usage: ./fdf [File]"
+
+# define ERR_PARSE_1 "error in init_struct (fail to open file)"
+# define ERR_PARSE_2 "error in get_dimension (invalid input)"
+# define ERR_PARSE_3 "error in get_dimension (invalid map size)"
+# define ERR_PARSE_4 "error in allocate_map (malloc error)"
+# define ERR_PARSE_5 "error in fill_map (invalid input)"
+# define ERR_PARSE_6 "error in fill_map (invalid line size)"
+
+# define ERR_MLX_1 "error in main (fail to establish connection with the X-Server)"
+
 
 # define HEIGHT 1500
 # define WIDTH 1000
@@ -25,43 +31,61 @@
 
 typedef struct				s_map
 {
-	int		fd;
-	int		x_max;
-	int		y_max;
-	int		**map;
-	char	*line;
-}							t_map;
+	int			fd;
+	char		*line;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			x_max;
+	int			y_max;
+	int			**map;
+}							t_fdf;
+
+typedef struct 				s_bresenham
+{
+	int			delta_x;
+	int			delta_y;
+	int			sign_x;
+	int			sign_y;
+	double		slope;
+	double		pitch;
+}							t_bresenham;
+
 
 //main.c
 int				main(int ac, char **av);
 
+//error.c
+int				error_msg(char *error_msg);
+int				gnl_error_free(char **line, char *error_msg);
+
+//free_end.c
+int				free_tab(int ***tab);
+
 //init_struct.c
-int				init_struct(char *file_name, t_map *m);
-void			print_struct(t_map *m);
+int				init_struct(char *file_name, t_fdf *f);
+void			print_struct(t_fdf *f);
 
 //init_fd.c
-int				init_fd(char *file_name, t_map *m);
+int				init_fd(char *file_name, t_fdf *f);
 
 //get_dimension.c
-int				get_dimension(t_map *m);
+int				get_dimension(t_fdf *f);
 
 //parse_line.c
 int				check_digit(char c);
 int				parse_line(char *line);
 
 //allocate_map.c
-int				allocate_map(t_map *m);
+int				allocate_map(t_fdf *f);
 
 //fill_map.c
-static	void	take_line(int y, char *line, t_map *m);
-int				fill_map(t_map *m);
+static	void	take_line(int y, char *line, t_fdf *f);
+int				fill_map(t_fdf *f);
 
-//error.c
-int				error_msg(char *error_msg);
-int				gnl_error_free(char **line, char *error_msg);
+//fdf.c
+
 
 //debug.c
-void			print_struct(t_map *m);
-
+void			print_struct(t_fdf *f);
 
 #endif

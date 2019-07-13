@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:59:35 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/11 17:04:54 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/13 16:04:59 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,13 @@
 
 int		main(int ac, char **av)
 {
-	t_map	m;
-	// void		*mlx_ptr;
-	// void		*window_ptr;
+	t_fdf	f;
 
-	// mlx_ptr = mlx_init();
-	// window_ptr = mlx_new_window(mlx_ptr, HEIGHT, WIDTH, "fdf");
-	// mlx_loop(mlx_ptr);
-	if (init_struct(av[1], &m) == -1)
+	if (ac != 2)
+		return (error_msg(ERR_ARG));
+	if (init_struct(av[1], &f) == -1)
 		return (-1);
-	print_struct(&m);
-	close(m.fd);
+	fdf();
+	clean_exit(&f);
 	return (0);
 }

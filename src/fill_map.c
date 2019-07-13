@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:17:01 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/12 18:43:56 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/13 13:34:55 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static	int	custom_atoi(char *line)
 	return (result * sign);
 }
 
-static	void	take_line(int y, char *line, t_map *m)
+static	void	take_line(int y, char *line, t_fdf *f)
 {
 	int x;
 	int i;
@@ -43,29 +43,29 @@ static	void	take_line(int y, char *line, t_map *m)
 	i = 0;
 	while (line[i])
 	{
-		m->map[y][x] = custom_atoi(line + i);
+		f->map[y][x] = custom_atoi(line + i);
 		while (line[i] && check_digit(line[i]))
 			i++;
 		if (line[i] == ' ')
 			i++;
 		x++;
 	}
-	m->map[y][x] = -424242;
+	f->map[y][x] = -424242;
 }
 
 
-int		fill_map(t_map *m)
+int		fill_map(t_fdf *f)
 {
 	int y;
 
 	y = 0;
-	while (get_next_line(m->fd, &m->line) > 0)
+	while (get_next_line(f->fd, &f->line) > 0)
 	{
-		if (parse_line(m->line) == -1)
-			return (gnl_error_free(&m->line, ERR_4));
-		if (y != 0 && parse_line(m->line) != m->x_max)
-			return (gnl_error_free(&m->line, ERR_5));
-		take_line(y, m->line, m);
+		if (parse_line(f->line) == -1)
+			return (gnl_error_free(&f->line, ERR_PARSE_5));
+		if (y != 0 && parse_line(f->line) != f->x_max)
+			return (gnl_error_free(&f->line, ERR_PARSE_6));
+		take_line(y, f->line, f);
 		y++;
 	}
 	return (0);

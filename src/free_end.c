@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.c                                            :+:      :+:    :+:   */
+/*   free_end.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/12 17:57:22 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/13 13:34:28 by nivergne         ###   ########.fr       */
+/*   Created: 2019/07/13 15:57:59 by nivergne          #+#    #+#             */
+/*   Updated: 2019/07/13 16:01:59 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "ft_printf.h"
+#include "mlx.h"
+#include "libft.h"
 
-void	print_struct(t_fdf *f)
+int		free_tab(int ***tab)
 {
 	int i;
-	int j;
 
 	i = 0;
-	j = 0;
-	ft_printf("fd = %d\n", f->fd);
-	ft_printf("x_max = %d\n", f->x_max);
-	ft_printf("y_max = %d\n", f->y_max);
-	while (f->map[i] != NULL)
+	if (!*tab)
+		return (0);
+	while ((*tab)[i] != NULL)
 	{
-		j = 0;
-		ft_printf("line = %d\n", i);
-		while (f->map[i][j] != -424242)
-		{
-			ft_printf("f->map[%d][%d] = %d\n", i, j, f->map[i][j]);
-			j++;
-		}
+		ft_strdel(&(*tab)[i]);
 		i++;
 	}
+	ft_memdel((void *)tab);
+	return (1);
+}
+
+int		clean_exit(t_fdf *f)
+{
+	// mlx_destroy_image
+	// mlx_destroy_window
+	free_tab(&f->map);
+	close(f->fd);
 }

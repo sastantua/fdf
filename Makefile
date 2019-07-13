@@ -6,7 +6,7 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/07/12 17:57:41 by nivergne         ###   ########.fr        #
+#    Updated: 2019/07/13 16:08:58 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,16 +20,17 @@ SRC_FDF =			main.c\
 					parse_line.c\
 					allocate_map.c\
 					fill_map.c\
+					free_end.c\
+					fdf.c\
 					debug.c
-
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FDF))
 OBJ = $(SRC:src/%.c=obj/%.o)
 
 SRC_PATH = src/
-INC = -I./include
+INC = -I./include 
 INC_PATH = -Iinclude/ -Ilibft/include -Imlx/
-MLX = -framework OpenGL -framework AppKit
+MLX = -framework OpenGL -framework AppKit -lmlx
 GCC_FLAG = -Wall -Wextra -Werror
 CC = gcc $(CFLAGS) $(INC_PATH)
 LIB = libft/libft.a
@@ -50,7 +51,7 @@ all: $(NAME)
 
 $(NAME): makelib obj $(LIB) $(OBJ)
 	@echo "$(BOL)$(GRN)FDF			$(BLU)compile$(GRN)		[OK]$(END)"
-	@$(CC) $(CFLAGS) $(INC_PATH) $(OBJ) $(MLX) -L libft -lft -o $(NAME)
+	@$(CC) $(CFLAGS) $(INC_PATH) $(OBJ) $(MLX) -L libft -lft -L mlx -lmlx -o $(NAME)
 
 makelib:
 	@$(MAKE) -C libft
@@ -79,6 +80,7 @@ clean: clean_lib
 	@/bin/rm -fr obj
 
 fclean: clean
+	@make -C mlx clean
 	@make -C libft fclean
 	@echo "$(CYA)$(BOL)FDF			$(BLU)bin$(END)$(RED)		[delete]$(END)"
 	@/bin/rm -f $(NAME)
