@@ -6,12 +6,18 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 16:03:00 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/13 16:03:26 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/14 22:12:25 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdlib.h>
+
+/* ==================== bresenham function ======================
+** this function implement the bresenham algorithm
+** comment if the implementation from code genius works cf
+** https://www.youtube.com/watch?v=zytBpLlSHms&feature=youtu.be&t=245 
+*/
 
 int		bresenham(int x_start, int y_start, int x_end, int y_end)
 {

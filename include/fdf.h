@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/13 16:00:49 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/14 22:06:41 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,29 @@
 # define ERR_PARSE_5 "error in fill_map (invalid input)"
 # define ERR_PARSE_6 "error in fill_map (invalid line size)"
 
-# define ERR_MLX_1 "error in main (fail to establish connection with the X-Server)"
+# define ERR_MLX_1 "error in fdf (fail to establish connection with the X-Server)"
+# define ERR_MLX_2 "error in fdf (fail to create a window)"
+# define ERR_MLX_3 "error in fdf (fail to create an image)"
+
+# define WIN_HEIGHT 1500
+# define WIN_WIDTH 1000
+# define IMG_HEIGHT 750
+# define IMG_WIDTH 500
+# define IMG_BITS (IMG_HEIGHT * IMG_WIDTH * 4)
 
 
-# define HEIGHT 1500
-# define WIDTH 1000
-
-
-typedef struct				s_map
+typedef struct				s_fdf
 {
 	int			fd;
 	char		*line;
+	char		*img;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*img_ptr;
 	int			x_max;
 	int			y_max;
 	int			**map;
+	int			exit_code;
 }							t_fdf;
 
 typedef struct 				s_bresenham
@@ -50,7 +57,6 @@ typedef struct 				s_bresenham
 	double		pitch;
 }							t_bresenham;
 
-
 //main.c
 int				main(int ac, char **av);
 
@@ -60,6 +66,7 @@ int				gnl_error_free(char **line, char *error_msg);
 
 //free_end.c
 int				free_tab(int ***tab);
+int				clean_exit(t_fdf *f);
 
 //init_struct.c
 int				init_struct(char *file_name, t_fdf *f);
@@ -83,7 +90,7 @@ static	void	take_line(int y, char *line, t_fdf *f);
 int				fill_map(t_fdf *f);
 
 //fdf.c
-
+int		fdf(t_fdf *f);
 
 //debug.c
 void			print_struct(t_fdf *f);

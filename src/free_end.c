@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 15:57:59 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/13 16:01:59 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/13 17:21:37 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		free_tab(int ***tab)
 		return (0);
 	while ((*tab)[i] != NULL)
 	{
-		ft_strdel(&(*tab)[i]);
+		free(&(*tab)[i]);
+		(*tab)[i] = NULL;
 		i++;
 	}
 	ft_memdel((void *)tab);
@@ -36,4 +37,7 @@ int		clean_exit(t_fdf *f)
 	// mlx_destroy_window
 	free_tab(&f->map);
 	close(f->fd);
+	if (f->exit_code == 1)
+		return (0);
+	return (-1);
 }

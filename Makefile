@@ -6,7 +6,7 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/07/13 16:08:58 by nivergne         ###   ########.fr        #
+#    Updated: 2019/07/14 22:17:15 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC_FDF =			main.c\
 					fill_map.c\
 					free_end.c\
 					fdf.c\
+					event_handler.c\
 					debug.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FDF))
@@ -54,6 +55,8 @@ $(NAME): makelib obj $(LIB) $(OBJ)
 	@$(CC) $(CFLAGS) $(INC_PATH) $(OBJ) $(MLX) -L libft -lft -L mlx -lmlx -o $(NAME)
 
 makelib:
+#	uncomment nextline if libmlx.a has been delete (comment to avoid all warnings from that dirty lib)
+#	@$(MAKE) -C mlx
 	@$(MAKE) -C libft
 
 obj/%.o: src/%.c
