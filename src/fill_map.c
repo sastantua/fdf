@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:17:01 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/13 13:34:55 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/20 12:57:53 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,27 @@ static	void	take_line(int y, char *line, t_fdf *f)
 
 	x = 0;
 	i = 0;
-	while (line[i])
+	if (line)
 	{
-		f->map[y][x] = custom_atoi(line + i);
-		while (line[i] && check_digit(line[i]))
-			i++;
-		if (line[i] == ' ')
-			i++;
-		x++;
+		while (line[i] && x < f->x_max)
+		{
+			f->map[y][x] = custom_atoi(line + i);
+			while (line[i] && check_digit(line[i]))
+				i++;
+			while (line[i] && line[i] == ' ')
+				i++;
+			x++;
+		}
+		f->map[y][x] = -424242;
 	}
-	f->map[y][x] = -424242;
 }
-
 
 int		fill_map(t_fdf *f)
 {
 	int y;
 
 	y = 0;
-	while (get_next_line(f->fd, &f->line) > 0)
+	while (get_next_line(f->fd, &f->line) >= 0 && y < f->y_max)
 	{
 		if (parse_line(f->line) == -1)
 			return (gnl_error_free(&f->line, ERR_PARSE_5));
@@ -68,5 +70,7 @@ int		fill_map(t_fdf *f)
 		take_line(y, f->line, f);
 		y++;
 	}
+	if (f->line)
+		ft_strdel(&f->line);
 	return (0);
 }

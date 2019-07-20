@@ -6,10 +6,11 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:23:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/13 16:01:05 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/15 12:27:50 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fdf.h"
 #include "libft.h"
 
 int		error_msg(char *error_msg)

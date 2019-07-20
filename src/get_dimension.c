@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:17:01 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/13 13:34:07 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/19 16:03:34 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		get_dimension(t_fdf *f)
 		return (-1);
 	f->y_max = 1;
 	f->x_max = parse_line(f->line);
-	while (get_next_line(f->fd, &f->line) > 0)
+	while (get_next_line(f->fd, &f->line) != 0)
 	{
 		if (parse_line(f->line) == -1)
 			return (gnl_error_free(&f->line, ERR_PARSE_2));

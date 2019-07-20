@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:59:35 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/14 22:13:15 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/20 12:58:05 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <unistd.h>
 
 /* ================= main function ===================
-** Create a mlx pointer, set window parameters and launch mlx loop
-** Then initialize structure
 */
 
 int		main(int ac, char **av)
@@ -28,6 +26,7 @@ int		main(int ac, char **av)
 		return (error_msg(ERR_ARG));
 	if (init_struct(av[1], &f) == -1)
 		return (-1);
+	// print_struct(&f);
 	if (fdf(&f) == -1)
 		return(clean_exit(&f));
 	f.exit_code = 1;

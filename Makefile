@@ -6,7 +6,7 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/07/14 22:17:15 by nivergne         ###   ########.fr        #
+#    Updated: 2019/07/20 12:58:23 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC_FDF =			main.c\
 					fill_map.c\
 					free_end.c\
 					fdf.c\
+					fdf_init.c\
+					bresenham.c\
 					event_handler.c\
 					debug.c
 
@@ -32,8 +34,8 @@ SRC_PATH = src/
 INC = -I./include 
 INC_PATH = -Iinclude/ -Ilibft/include -Imlx/
 MLX = -framework OpenGL -framework AppKit -lmlx
-GCC_FLAG = -Wall -Wextra -Werror
-CC = gcc $(CFLAGS) $(INC_PATH)
+GCC_FLAG = -Wall -Wextra -Werror -g3 -fsanitize=address
+CC = gcc $(GCC_FLAG) $(INC_PATH)
 LIB = libft/libft.a
 
 GRN =		\x1b[32m

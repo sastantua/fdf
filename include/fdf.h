@@ -6,12 +6,14 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/14 22:06:41 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/19 17:24:50 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+#include "ft_printf.h"
 
 # define ERR_ARG "Usage: ./fdf [File]"
 
@@ -25,13 +27,13 @@
 # define ERR_MLX_1 "error in fdf (fail to establish connection with the X-Server)"
 # define ERR_MLX_2 "error in fdf (fail to create a window)"
 # define ERR_MLX_3 "error in fdf (fail to create an image)"
+# define ERR_MLX_4 "error in fdf (fail to update image)"
 
 # define WIN_HEIGHT 1500
 # define WIN_WIDTH 1000
 # define IMG_HEIGHT 750
 # define IMG_WIDTH 500
 # define IMG_BITS (IMG_HEIGHT * IMG_WIDTH * 4)
-
 
 typedef struct				s_fdf
 {
@@ -44,6 +46,10 @@ typedef struct				s_fdf
 	int			x_max;
 	int			y_max;
 	int			**map;
+	int			scale;
+	int			point_pixel_x;
+	int			point_pixel_y;
+	int			distortion_z;
 	int			exit_code;
 }							t_fdf;
 
@@ -56,6 +62,20 @@ typedef struct 				s_bresenham
 	double		slope;
 	double		pitch;
 }							t_bresenham;
+
+typedef struct 				s_point
+{
+	double		x;
+	double		y;
+	double		z;
+}							t_point;
+
+typedef struct 				s_param
+{
+	int			pixel;
+	int			line;
+	int			endian;
+}							t_param;
 
 //main.c
 int				main(int ac, char **av);
@@ -86,11 +106,22 @@ int				parse_line(char *line);
 int				allocate_map(t_fdf *f);
 
 //fill_map.c
-static	void	take_line(int y, char *line, t_fdf *f);
+// static	void	take_line(int y, char *line, t_fdf *f);
 int				fill_map(t_fdf *f);
 
 //fdf.c
-int		fdf(t_fdf *f);
+// static void		draw_link_x(int x, int y, t_fdf *f);
+// static void		draw_link_y(int x, int y, t_fdf *f);
+// static int		draw_map_iterate(t_fdf *f);
+int				fdf(t_fdf *f);
+
+//fdf_init.c
+void			fdf_init(t_fdf *f, t_param *p);
+t_point			coord_init(int x, int y, int z, t_fdf *f);
+
+//bresenham.c
+void			set_pixel_value(int x, int y, int color, t_fdf *f);
+void			bresenham(int color, t_point *start, t_point *end, t_fdf *f);
 
 //debug.c
 void			print_struct(t_fdf *f);
