@@ -6,14 +6,12 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/19 17:24:50 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/20 22:27:36 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-
-#include "ft_printf.h"
 
 # define ERR_ARG "Usage: ./fdf [File]"
 
@@ -49,16 +47,18 @@ typedef struct				s_fdf
 	int			scale;
 	int			point_pixel_x;
 	int			point_pixel_y;
+	int			rotation_x;
+	int			rotation_y;
 	int			distortion_z;
 	int			exit_code;
 }							t_fdf;
 
 typedef struct 				s_bresenham
 {
-	int			delta_x;
-	int			delta_y;
 	int			sign_x;
 	int			sign_y;
+	double		delta_x;
+	double		delta_y;
 	double		slope;
 	double		pitch;
 }							t_bresenham;
@@ -106,22 +106,28 @@ int				parse_line(char *line);
 int				allocate_map(t_fdf *f);
 
 //fill_map.c
-// static	void	take_line(int y, char *line, t_fdf *f);
+int				custom_atoi(char *line);
+void			take_line(int y, char *line, t_fdf *f);
 int				fill_map(t_fdf *f);
 
 //fdf.c
-// static void		draw_link_x(int x, int y, t_fdf *f);
-// static void		draw_link_y(int x, int y, t_fdf *f);
-// static int		draw_map_iterate(t_fdf *f);
+void			draw_link_x(int x, int y, t_fdf *f);
+void			draw_link_y(int x, int y, t_fdf *f); 
+int				draw_map_iterate(t_fdf *f);
 int				fdf(t_fdf *f);
 
 //fdf_init.c
 void			fdf_init(t_fdf *f, t_param *p);
 t_point			coord_init(int x, int y, int z, t_fdf *f);
+void			bresenham_init(t_point *start, t_point *end, t_bresenham *b);
 
 //bresenham.c
 void			set_pixel_value(int x, int y, int color, t_fdf *f);
 void			bresenham(int color, t_point *start, t_point *end, t_fdf *f);
+
+//event_handler.c
+// int				event_handler(int event, t_fdf *f);
+
 
 //debug.c
 void			print_struct(t_fdf *f);

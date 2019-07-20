@@ -6,14 +6,14 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:17:01 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/20 12:57:53 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/20 13:45:44 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
-static	int	custom_atoi(char *line)
+int		custom_atoi(char *line)
 {
 	int		i;
 	int		sign;
@@ -34,7 +34,7 @@ static	int	custom_atoi(char *line)
 	return (result * sign);
 }
 
-static	void	take_line(int y, char *line, t_fdf *f)
+void	take_line(int y, char *line, t_fdf *f)
 {
 	int x;
 	int i;

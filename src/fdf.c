@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:57:58 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/20 13:16:57 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/20 22:29:08 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,41 @@
 #include "mlx.h"
 #include "libft.h"
 
-static void	draw_link_x(int x, int y, t_fdf *f)
+void	draw_link_x(int x, int y, t_fdf *f)
 {
 	int color;
 	t_point start;
 	t_point end;
 
-	color = 0xFFFFFF;
+	color = 0xFFFFFFFF;
 	if (x + 1 < f->x_max)
 	{
 		if (f->map[y][x] > 0 && f->map[y][x + 1] > 0)
-			color = 0xFF0000;
+			color = 0x00FF0000;
 		start = coord_init(x, y, f->map[y][x], f);
-		ft_printf("y = %d x = %d\n", y, x);
-		ft_printf("f->map[y][x] = %d\n", f->map[y][x]);
-		ft_printf("f->map[0][11] = %d\n", f->map[0][11]);
 		end = coord_init(x + 1, y, f->map[y][x + 1], f);
 		bresenham(color, &start, &end, f);
 	}
 }
 
-static void	draw_link_y(int x, int y, t_fdf *f)
+void	draw_link_y(int x, int y, t_fdf *f)
 {
 	int color;
 	t_point start;
 	t_point end;
 
-	color = 0xFFFFFF;
+	color = 0xFFFFFFFF;
 	if (y + 1 < f->y_max)
 	{
 		if (f->map[y][x] > 0 && f->map[y + 1][x] > 0)
-			color = 0xFF0000;
+			color = 0x00FF0000;
 		start = coord_init(x, y, f->map[y][x], f);
-		end = coord_init(x, y + 1, f->map[y][x + 1], f);
+		end = coord_init(x, y + 1, f->map[y + 1][x], f);
 		bresenham(color, &start, &end, f);
 	}
 }
 
-static int	draw_map_iterate(t_fdf *f)
+int	draw_map_iterate(t_fdf *f)
 {
 	int y;
 	int x;
@@ -78,23 +75,18 @@ int		fdf(t_fdf *f)
 	t_param p;
 
 	fdf_init(f, &p);
-	ft_printf("1- AFTER\n");
 	if (!(f->mlx_ptr = mlx_init()))
-	{
-		ft_printf("ALTER\n");
 		return (error_msg(ERR_MLX_1));
-	}
 	if (!(f->win_ptr = mlx_new_window(f->mlx_ptr, WIN_HEIGHT, WIN_WIDTH, "fdf")))
 		return (error_msg(ERR_MLX_2));
 	if (!(f->img_ptr = mlx_new_image(f->mlx_ptr, IMG_HEIGHT, IMG_WIDTH)))
 		return (error_msg(ERR_MLX_3));
 	if (!(f->img = mlx_get_data_addr(f->img_ptr, &p.pixel, &p.line, &p.endian)))
 		return (error_msg(ERR_MLX_4));
-	// mlx_hook(f->win_ptr, 2, 0, event_handler, ...);
+	// mlx_hook(f->win_ptr, 2, 0, event_handler, f);
 	draw_map_iterate(f);
 	mlx_loop(f->mlx_ptr);
 	return (0);
-	//order?
 }
 
 /* ========================= fdf ==========================

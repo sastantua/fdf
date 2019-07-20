@@ -6,7 +6,7 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/07/20 12:58:23 by nivergne         ###   ########.fr        #
+#    Updated: 2019/07/20 14:03:09 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC_PATH = src/
 INC = -I./include 
 INC_PATH = -Iinclude/ -Ilibft/include -Imlx/
 MLX = -framework OpenGL -framework AppKit -lmlx
-GCC_FLAG = -Wall -Wextra -Werror -g3 -fsanitize=address
+GCC_FLAG = -Wall -Wextra -Werror -g
 CC = gcc $(GCC_FLAG) $(INC_PATH)
 LIB = libft/libft.a
 
