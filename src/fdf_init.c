@@ -6,42 +6,72 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 23:56:16 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/20 22:19:30 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/21 23:50:44 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-void	fdf_init(t_fdf *f, t_param *p)
+void	fdf_init(t_fdf *f)
 {
-	p->pixel = 4;
-	p->endian = 0;
-	p->line = f->x_max;
+	f->pix = 4;
+	f->end = 0;
+	f->lin = f->x_max;
 	f->rotation_x = 0;
 	f->rotation_y = 0;
+	f->rotation_z = 0;
 	f->distortion_z = 1;
-	f->scale = (IMG_WIDTH / 2) / f->x_max;
-	f->point_pixel_x = (IMG_WIDTH - (f->x_max * f->scale)) / 2;
-	f->point_pixel_y = (IMG_HEIGHT - (f->y_max * f->scale)) / 2;
+	f->projection_type = 0;
+	f->zoom = (IMG_WIDTH / 2) / f->x_max;
+	f->move_x = (IMG_WIDTH - (f->x_max * f->zoom)) / 2;
+	f->move_y = (IMG_HEIGHT - (f->y_max * f->zoom)) / 2;
+}
+
+t_point		normal_init(int x, int y, int z, t_fdf *f)
+{
+	int		tmp;
+	t_point	ret;
+
+	x *= f->zoom;
+	y *= f->zoom;
+	z *= f->zoom * f->distortion_z;
+	ret.y = (y * cos(f->rotation_x)) + (z * sin(f->rotation_x));
+	ret.z = (z * cos(f->rotation_x)) - (y * sin(f->rotation_x));
+	ret.x = (x * cos(f->rotation_y)) + (ret.z * sin(f->rotation_y));
+	tmp = ret.x;
+	ret.x = (ret.x * cos(f->rotation_z)) - (ret.y * sin(f->rotation_z));
+	ret.y = (tmp * sin(f->rotation_z)) + (ret.y * cos(f->rotation_z));
+	ret.x += f->move_x;
+	ret.y += f->move_y;
+	return (ret);
+}
+
+t_point		iso_init(int x, int y, int z, t_fdf *f)
+{
+	t_point	ret;
+	
+	if (f->projection_type == 1)
+	{
+		ret.x = ((x - y) * cos(0.523599));
+		ret.y = (-z + (x + y) * sin(0.523599));
+	}
+	else
+	{
+		ret.x = ((x - y) * cos(0.46373398));
+		ret.y = (-z + (x + y) * sin(0.46373398));
+	}
+	ret.x += f->move_x;
+	ret.y += f->move_y;
+	return (ret);
 }
 
 t_point		coord_init(int x, int y, int z, t_fdf *f)
 {
-	t_point ret;
-
-	x *= f->scale;
-	y *= f->scale;
-	z *= f->scale * f->distortion_z;
-	ret.y = (y * cos(0)) + (z * sin(0));
-	ret.z = (z * cos(0)) - (y * sin(0));
-	ret.x = (x * cos(0)) + (ret.z * sin(0));
-	x = ret.x;
-	ret.x = (ret.x * cos(0)) - (ret.y * sin(0));
-	ret.y = (x * sin(0)) + (ret.y * cos(0));
-	ret.x += f->point_pixel_x;
-	ret.y += f->point_pixel_y;
-	return (ret);
+	if (f->projection_type == 0)
+		return (normal_init(x, y, z, f));
+	else 
+		return (iso_init(x, y, z, f));
 }
 
 void	bresenham_init(t_point *start, t_point *end, t_bresenham *b)

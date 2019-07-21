@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:57:58 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/20 22:29:08 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/21 23:51:43 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,15 @@ int	draw_map_iterate(t_fdf *f)
 
 int		fdf(t_fdf *f)
 {
-	t_param p;
-
-	fdf_init(f, &p);
 	if (!(f->mlx_ptr = mlx_init()))
 		return (error_msg(ERR_MLX_1));
 	if (!(f->win_ptr = mlx_new_window(f->mlx_ptr, WIN_HEIGHT, WIN_WIDTH, "fdf")))
 		return (error_msg(ERR_MLX_2));
 	if (!(f->img_ptr = mlx_new_image(f->mlx_ptr, IMG_HEIGHT, IMG_WIDTH)))
 		return (error_msg(ERR_MLX_3));
-	if (!(f->img = mlx_get_data_addr(f->img_ptr, &p.pixel, &p.line, &p.endian)))
+	if (!(f->img = mlx_get_data_addr(f->img_ptr, &f->pix, &f->lin, &f->end)))
 		return (error_msg(ERR_MLX_4));
-	// mlx_hook(f->win_ptr, 2, 0, event_handler, f);
+	mlx_hook(f->win_ptr, 2, 0, event_handler, f);
 	draw_map_iterate(f);
 	mlx_loop(f->mlx_ptr);
 	return (0);

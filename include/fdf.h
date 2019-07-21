@@ -6,12 +6,14 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/20 22:27:36 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/21 23:51:20 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+# include "ft_printf.h"
 
 # define ERR_ARG "Usage: ./fdf [File]"
 
@@ -33,6 +35,24 @@
 # define IMG_WIDTH 500
 # define IMG_BITS (IMG_HEIGHT * IMG_WIDTH * 4)
 
+# define ESCAPE 53
+# define ESPACE 49
+# define TABULATION 48
+
+# define ARROW_UP 126
+# define ARROW_DOWN 125
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
+
+# define A 12
+# define Q 0
+# define Z 13
+# define S 1
+# define E 14
+# define D 2
+# define R 15
+# define F 3
+
 typedef struct				s_fdf
 {
 	int			fd;
@@ -41,15 +61,20 @@ typedef struct				s_fdf
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
+	int			pix;
+	int			lin;
+	int			end;
 	int			x_max;
 	int			y_max;
 	int			**map;
-	int			scale;
-	int			point_pixel_x;
-	int			point_pixel_y;
+	int			zoom;
+	int			move_x;
+	int			move_y;
 	int			rotation_x;
 	int			rotation_y;
+	int			rotation_z;
 	int			distortion_z;
+	int			projection_type;
 	int			exit_code;
 }							t_fdf;
 
@@ -69,13 +94,6 @@ typedef struct 				s_point
 	double		y;
 	double		z;
 }							t_point;
-
-typedef struct 				s_param
-{
-	int			pixel;
-	int			line;
-	int			endian;
-}							t_param;
 
 //main.c
 int				main(int ac, char **av);
@@ -117,7 +135,7 @@ int				draw_map_iterate(t_fdf *f);
 int				fdf(t_fdf *f);
 
 //fdf_init.c
-void			fdf_init(t_fdf *f, t_param *p);
+void			fdf_init(t_fdf *f);
 t_point			coord_init(int x, int y, int z, t_fdf *f);
 void			bresenham_init(t_point *start, t_point *end, t_bresenham *b);
 
@@ -126,7 +144,7 @@ void			set_pixel_value(int x, int y, int color, t_fdf *f);
 void			bresenham(int color, t_point *start, t_point *end, t_fdf *f);
 
 //event_handler.c
-// int				event_handler(int event, t_fdf *f);
+int				event_handler(int event, t_fdf *f);
 
 
 //debug.c

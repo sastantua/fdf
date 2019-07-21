@@ -6,7 +6,7 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/07/20 14:03:09 by nivergne         ###   ########.fr        #
+#    Updated: 2019/07/21 23:11:52 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC_PATH = src/
 INC = -I./include 
 INC_PATH = -Iinclude/ -Ilibft/include -Imlx/
 MLX = -framework OpenGL -framework AppKit -lmlx
-GCC_FLAG = -Wall -Wextra -Werror -g
+GCC_FLAG = -Wall -Wextra -Werror -g3 -fsanitize=address
 CC = gcc $(GCC_FLAG) $(INC_PATH)
 LIB = libft/libft.a
 
@@ -73,7 +73,7 @@ debug: makelib obj $(LIB) $(OBJ)
 
 fsanitize: makelib obj $(LIB) $(OBJ)
 	@echo "$(BOL)$(GRN)FDF			$(BLU)fsanitize$(GRN)	[OK]$(END)"
-	@$(CC) $(CFLAGS) -g3 -fsanitize=address $(INC_PATH) $(OBJ) $(MLX) -L libft -lft -o $(NAME)_fsanitize
+	@$(CC) $(CFLAGS) -g3 -fsanitize=address $(INC_PATH) $(OBJ) $(MLX) -L libft -lft -L mlx -lmlx -o $(NAME)_fsanitize
 
 obj:
 	@mkdir -p obj

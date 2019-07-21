@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 15:57:59 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/13 17:21:37 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/21 23:27:07 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ int		free_tab(int ***tab)
 
 int		clean_exit(t_fdf *f)
 {
-	// mlx_destroy_image
-	// mlx_destroy_window
-	free_tab(&f->map);
+	mlx_destroy_image(f->mlx_ptr, f->img_ptr);
+	mlx_destroy_window(f->mlx_ptr, f->img_ptr);
+	if (f->map)
+		free_tab(&f->map);
 	close(f->fd);
 	if (f->exit_code == 1)
 		return (0);
