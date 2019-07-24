@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 23:56:16 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/21 23:50:44 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/24 02:25:02 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ t_point		normal_init(int x, int y, int z, t_fdf *f)
 	x *= f->zoom;
 	y *= f->zoom;
 	z *= f->zoom * f->distortion_z;
+	tmp = (x * cos(f->rotation_y)) + (ret.z * sin(f->rotation_y));
 	ret.y = (y * cos(f->rotation_x)) + (z * sin(f->rotation_x));
 	ret.z = (z * cos(f->rotation_x)) - (y * sin(f->rotation_x));
 	ret.x = (x * cos(f->rotation_y)) + (ret.z * sin(f->rotation_y));
-	tmp = ret.x;
 	ret.x = (ret.x * cos(f->rotation_z)) - (ret.y * sin(f->rotation_z));
 	ret.y = (tmp * sin(f->rotation_z)) + (ret.y * cos(f->rotation_z));
 	ret.x += f->move_x;
@@ -51,6 +51,9 @@ t_point		iso_init(int x, int y, int z, t_fdf *f)
 {
 	t_point	ret;
 	
+	x *= f->zoom;
+	y *= f->zoom;
+	z *= f->zoom * f->distortion_z;
 	if (f->projection_type == 1)
 	{
 		ret.x = ((x - y) * cos(0.523599));

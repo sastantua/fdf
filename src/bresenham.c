@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 16:03:00 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/20 22:29:18 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/24 02:32:13 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_pixel_value(int x, int y, int color, t_fdf *f)
 	int index;
 
 	index = ((IMG_HEIGHT * y) + x) * 4;
-	if (x > 0 && x < IMG_WIDTH && y > 0 && y < IMG_HEIGHT)
+	if (x > 0 && x < IMG_HEIGHT && y > 0 && y < IMG_WIDTH)
 	{
 		f->img[index] = color & 0xFF;
 		f->img[index + 1] = (color >> 8) & 0xFF;

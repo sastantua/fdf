@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/21 23:51:20 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/24 02:36:18 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@
 # define D 2
 # define R 15
 # define F 3
+# define T 17
+# define G 5
 
 typedef struct				s_fdf
 {
@@ -70,10 +72,10 @@ typedef struct				s_fdf
 	int			zoom;
 	int			move_x;
 	int			move_y;
-	int			rotation_x;
-	int			rotation_y;
-	int			rotation_z;
-	int			distortion_z;
+	double		rotation_x;
+	double		rotation_y;
+	double		rotation_z;
+	double			distortion_z;
 	int			projection_type;
 	int			exit_code;
 }							t_fdf;
@@ -145,7 +147,6 @@ void			bresenham(int color, t_point *start, t_point *end, t_fdf *f);
 
 //event_handler.c
 int				event_handler(int event, t_fdf *f);
-
 
 //debug.c
 void			print_struct(t_fdf *f);
