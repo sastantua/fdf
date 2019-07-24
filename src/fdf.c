@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:57:58 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/24 02:07:21 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/24 23:57:57 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	draw_link_x(int x, int y, t_fdf *f)
 	t_point start;
 	t_point end;
 
-	color = 0xFFFFFFFF;
+	color = f->color_grid;
 	if (x + 1 < f->x_max)
 	{
 		if (f->map[y][x] > 0 && f->map[y][x + 1] > 0)
-			color = 0x00FF0000;
+			color = f->color_shape;
 		start = coord_init(x, y, f->map[y][x], f);
 		end = coord_init(x + 1, y, f->map[y][x + 1], f);
 		bresenham(color, &start, &end, f);
@@ -37,11 +37,11 @@ void	draw_link_y(int x, int y, t_fdf *f)
 	t_point start;
 	t_point end;
 
-	color = 0xFFFFFFFF;
+	color = f->color_grid;
 	if (y + 1 < f->y_max)
 	{
 		if (f->map[y][x] > 0 && f->map[y + 1][x] > 0)
-			color = 0x00FF0000;
+			color = f->color_shape;
 		start = coord_init(x, y, f->map[y][x], f);
 		end = coord_init(x, y + 1, f->map[y + 1][x], f);
 		bresenham(color, &start, &end, f);

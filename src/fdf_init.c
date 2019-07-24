@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 23:56:16 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/24 02:25:02 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/25 00:24:26 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ void	fdf_init(t_fdf *f)
 	f->pix = 4;
 	f->end = 0;
 	f->lin = f->x_max;
-	f->rotation_x = 0;
+	f->rotation_x = 0 - (10 * 3.14 / 180);
 	f->rotation_y = 0;
 	f->rotation_z = 0;
-	f->distortion_z = 1;
+	f->distortion_z = 0.7;
 	f->projection_type = 0;
+	f->color_grid = COLOR_PURPLE;
+	f->color_shape = COLOR_CYAN;
 	f->zoom = (IMG_WIDTH / 2) / f->x_max;
 	f->move_x = (IMG_WIDTH - (f->x_max * f->zoom)) / 2;
 	f->move_y = (IMG_HEIGHT - (f->y_max * f->zoom)) / 2;
