@@ -6,7 +6,7 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/07/21 23:11:52 by nivergne         ###   ########.fr        #
+#    Updated: 2019/07/25 00:43:45 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,11 @@ REV =		\x1b[7m
 BOL =		\x1b[1m
 END =		\x1b[0m
 
+DARK_PURPLE		=			\033[38;2;65;0;255m
+DARK_PINK		= 			\033[38;2;86;0;255m
+PURPLE			=			\033[38;2;114;0;255m
+PINK			=			\033[38;2;152;0;255m
+
 all: $(NAME)
 
 $(NAME): makelib obj $(LIB) $(OBJ)
@@ -91,6 +96,15 @@ fclean: clean
 	@/bin/rm -f $(NAME)
 
 re: fclean all
+
+easter_egg:
+	@echo "$(DARK_PURPLE)______ _   ___   __ ______ _____ _____ _____ _____ _____ _   _"
+	@echo "$(DARK_PURPLE)| ___ \ | | \ \ / / | ___ \_   _|_   _/  __ \  _  |_   _| \ | |"
+	@echo "$(DARK_PINK)| |_/ / | | |\ V /  | |_/ / | |   | | | /  \/ | | | | | |  \| |"
+	@echo "$(PURPLE)| ___ \ | | | \ /   | ___ \ | |   | | | |   | | | | | | |     |"
+	@echo "$(PINK)| |_/ / |_| | | |   | |_/ /_| |_  | | | \__/\ \_/ /_| |_| |\  |"
+	@echo "$(PINK)\____/ \___/  \_/   \____/ \___/  \_/  \____/\___/ \___/\_| \_/"
+	@echo "$(END)"
 
 .PHONY: all clean fclean re libft_clean proj_clean
 
