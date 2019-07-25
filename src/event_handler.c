@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 22:24:38 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/25 00:21:42 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/25 08:21:47 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,36 @@ static void		move_rotate(int event, t_fdf *f)
 		f->move_y += 10;
 	else if (event == ARROW_UP)
 		f->move_y -= 10;
-	else if (event == A)
+	else if (event == KEY_A)
 		f->rotation_y -= (10 * 3.14 / 180);
-	else if (event == Q)
+	else if (event == KEY_Q)
 		f->rotation_y += (10 * 3.14 / 180);
-	else if (event == Z)
+	else if (event == KEY_Z)
 		f->rotation_x -= (10 * 3.14 / 180);
-	else if (event == S)
+	else if (event == KEY_S)
 		f->rotation_x += (10 * 3.14 / 180);
-	else if (event == E)
+	else if (event == KEY_E)
 		f->rotation_z -= (10 * 3.14 / 180);
-	else if (event == D)
+	else if (event == KEY_D)
 		f->rotation_z += (10 * 3.14 / 180);
 }
 
 
 static void		zoom_distortion(int event, t_fdf *f)
 {
-	if (event == R)
+	if (event == KEY_R)
 		f->zoom++;
-	else if (event == F)
+	else if (event == KEY_F)
 		f->zoom--;
-	else if (event == T)
+	else if (event == KEY_T)
 		f->distortion_z += 0.2;
-	else if (event == G)
+	else if (event == KEY_G)
 		f->distortion_z -= 0.2;
 }
 
 static void		color_grid_shape(int event, t_fdf *f)
 {
-	if (event == Y)
+	if (event == KEY_Y)
 	{
 		if (f->color_grid == COLOR_PURPLE)
 			f->color_grid = COLOR_CYAN;
@@ -63,7 +63,7 @@ static void		color_grid_shape(int event, t_fdf *f)
 		else if (f->color_grid == COLOR_WHITE)
 			f->color_grid = COLOR_PURPLE;
 	}
-	else if (event == H)
+	else if (event == KEY_H)
 	{
 		if (f->color_shape == COLOR_CYAN)
 			f->color_shape = COLOR_PURPLE;
@@ -73,6 +73,8 @@ static void		color_grid_shape(int event, t_fdf *f)
 			f->color_shape = COLOR_WHITE;
 		else if (f->color_shape == COLOR_WHITE)
 			f->color_shape = COLOR_RED;
+		else if (f->color_shape == COLOR_RED)
+			f->color_shape = COLOR_CYAN;
 	}
 }
 

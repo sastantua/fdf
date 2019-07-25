@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/25 00:28:19 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/25 08:20:36 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
 
-# define A 12
-# define Q 0
-# define Z 13
-# define S 1
-# define E 14
-# define D 2
-# define R 15
-# define F 3
-# define T 17
-# define G 5
-# define Y 16
-# define H 4
+# define KEY_A 12
+# define KEY_Q 0
+# define KEY_Z 13
+# define KEY_S 1
+# define KEY_E 14
+# define KEY_D 2
+# define KEY_R 15
+# define KEY_F 3
+# define KEY_T 17
+# define KEY_G 5
+# define KEY_Y 16
+# define KEY_H 4
 
 # define COLOR_WHITE 0xFFFFFFFF
 # define COLOR_CYAN 0xFF00FFFF
