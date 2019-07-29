@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:17:01 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/20 13:45:44 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/29 17:55:10 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ void	take_line(int y, char *line, t_fdf *f)
 				i++;
 			while (line[i] && line[i] == ' ')
 				i++;
+			if (ft_strncmp(line + i, ",0xFFFFFF", 9) == 0)
+			{
+				f->map[y][x] = 255;
+				i += 10;
+			}
 			x++;
 		}
 		f->map[y][x] = -424242;

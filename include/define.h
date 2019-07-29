@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/29 13:21:00 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/29 15:16:34 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define ERR_PARSE_1 "error in init_struct (fail to open file)"
 # define ERR_PARSE_2 "error in get_dimension (invalid input)"
-# define ERR_PARSE_3 "error in get_dimension (invalid map size)"
+// # define ERR_PARSE_3 "error in get_dimension (invalid map size)"
 # define ERR_PARSE_4 "error in allocate_map (malloc error)"
 # define ERR_PARSE_5 "error in fill_map (invalid input)"
 # define ERR_PARSE_6 "error in fill_map (invalid line size)"

@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:59:35 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/24 02:09:54 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/07/29 17:55:17 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ int		main(int ac, char **av)
 		return(clean_exit(&f));
 	f.exit_code = 1;
 	return (clean_exit(&f));
+	return (0);
 }
