@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 16:03:00 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/24 02:32:13 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:03:35 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,17 @@ void	bresenham(int color, t_point *start, t_point *end, t_fdf *f)
 	}
 }
 
-/* ===================== bresenham ========================
+/*
+** ===================== bresenham ========================
 ** this function implement the bresenham algorithm
 ** comment if the implementation from code genius works cf
-** https://www.youtube.com/watch?v=zytBpLlSHms&feature=youtu.be&t=245 
+** https://www.youtube.com/watch?v=zytBpLlSHms&feature=youtu.be&t=245
 */
 
-/* =================== set_pixel_value ====================
+/*
+** =================== set_pixel_value ====================
 ** 1. put index at image width (x_max size) * number of line
-** 1b (y value) + number of pixel of the line already set (x value) 
+** 1b (y value) + number of pixel of the line already set (x value)
 ** 2. if the index is in the map
 ** ** 3. set the value of the pixel (4 bytes, opacity is ignored)
 ** ** 4. so color & 255 to put the right color on the pixel

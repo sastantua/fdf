@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 22:24:38 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/29 13:23:48 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:12:06 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void		move_rotate(int event, t_fdf *f)
 	else if (event == KEY_D)
 		f->rotation_z += (10 * 3.14 / 180);
 }
-
 
 static void		zoom_distortion(int event, t_fdf *f)
 {

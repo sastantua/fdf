@@ -6,15 +6,12 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:59:35 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/29 17:55:17 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:19:39 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
-
-/* ================= main function ===================
-*/
 
 int		main(int ac, char **av)
 {
@@ -27,8 +24,7 @@ int		main(int ac, char **av)
 		return (-1);
 	fdf_init(&f);
 	if (fdf(&f) == -1)
-		return(clean_exit(&f));
+		return (clean_exit(&f));
 	f.exit_code = 1;
 	return (clean_exit(&f));
-	return (0);
 }

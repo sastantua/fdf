@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:17:01 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/29 16:16:51 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:19:01 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		get_dimension(t_fdf *f)
 		f->y_max++;
 	}
 	ft_strdel(&f->line);
-	// if (f->x_max < 1 || f->y_max < 1)
-	// 	return (error_msg(ERR_PARSE_3));
+	if (f->x_max < 1 || f->y_max < 1)
+		return (error_msg(ERR_PARSE_3));
 	return (0);
 }

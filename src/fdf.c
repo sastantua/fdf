@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:57:58 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/29 13:24:15 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:10:58 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "mlx.h"
 #include "libft.h"
 
-void	draw_link_x(int x, int y, t_fdf *f)
+void		draw_link_x(int x, int y, t_fdf *f)
 {
-	int color;
+	int		color;
 	t_point start;
 	t_point end;
 
@@ -31,9 +31,9 @@ void	draw_link_x(int x, int y, t_fdf *f)
 	}
 }
 
-void	draw_link_y(int x, int y, t_fdf *f)
+void		draw_link_y(int x, int y, t_fdf *f)
 {
-	int color;
+	int		color;
 	t_point start;
 	t_point end;
 
@@ -48,7 +48,7 @@ void	draw_link_y(int x, int y, t_fdf *f)
 	}
 }
 
-int	draw_map_iterate(t_fdf *f)
+int			draw_map_iterate(t_fdf *f)
 {
 	int y;
 	int x;
@@ -70,7 +70,7 @@ int	draw_map_iterate(t_fdf *f)
 	return (0);
 }
 
-int		fdf(t_fdf *f)
+int			fdf(t_fdf *f)
 {
 	if (!(f->mlx_ptr = mlx_init()))
 		return (error_msg(ERR_MLX_1));
@@ -86,7 +86,8 @@ int		fdf(t_fdf *f)
 	return (0);
 }
 
-/* ========================= fdf ==========================
+/*
+**========================= fdf ==========================
 ** 1. initialize the mlx with mlx_init
 ** 2. create a window and return a pointer to it
 ** 3. create an image and return a pointer to it
@@ -95,22 +96,26 @@ int		fdf(t_fdf *f)
 ** 6. call a function to iterate on each point of the map
 */
 
-/* =================== draw_map_iterate ===================
+/*
+** =================== draw_map_iterate ===================
 ** 1. initliaze an image with bzero
 ** 2. iterate through the map
 ** 3. on each point, call draw_link x and y
 */
 
-/* ====================== draw_link =======================
+/*
+** ====================== draw_link =======================
 ** 1. check if the next point is still on the map
 ** ** 2. change the color to red
 ** ** 3. call bresenham function
 */
 
-/* ===================== pseudo code ======================
+/*
+** ===================== pseudo code ======================
 ** Je parse
 ** Je crée des pointeurs sur mlx_init, mlx_new_window et mlw_new_image
 ** Je parcours la map que je stock au cours du parsing
-** Si la valeur du point courant et du point suivant x et x + 1 ou y et y + 1 sont toutes deux > 0
+** Si la valeur du point courant et du point suivant x et x + 1
+** ou y et y + 1 sont toutes deux > 0
 ** Je set leur couleur et leur valeur puis je rentre dans bresenham
 */

@@ -6,7 +6,7 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/07/29 17:55:36 by nivergne         ###   ########.fr        #
+#    Updated: 2019/08/05 18:48:56 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,10 @@ SRC_FDF =			main.c\
 					event_handler.c\
 					debug.c
 
+INC_FDF =			define.h\
+					fdf.h
+
+INC_FDF := $(addprefix include/, $(INC_FDF))
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FDF))
 OBJ = $(SRC:src/%.c=obj/%.o)
 
@@ -66,7 +70,7 @@ makelib:
 #	@$(MAKE) -C mlx
 	@$(MAKE) -C libft
 
-obj/%.o: src/%.c
+obj/%.o: src/%.c $(INC_FDF)
 	@echo "Building$(BLU) $(patsubst obj/%,%,$(basename $@))$(END)"
 	@printf "\033[A"
 	@$(CC) $(CFLAGS) -o $@ -c $<

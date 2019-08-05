@@ -6,14 +6,15 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 07:56:19 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/29 17:55:04 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:19:15 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <unistd.h>
 
-/* ================= init_struct ===================
+/*
+** ================= init_struct ===================
 ** Open the map file
 ** Use gnl over the file to get the dimension
 ** Allocate the map in a int ** according to the map dimension

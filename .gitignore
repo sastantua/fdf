@@ -7,3 +7,4 @@ mlx/mlx_shaders.o
 mlx/mlx_xpm.o
 trash/
 fdf
+obj/

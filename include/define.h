@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/29 15:16:34 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/05 18:52:40 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 # define ERR_PARSE_1 "error in init_struct (fail to open file)"
 # define ERR_PARSE_2 "error in get_dimension (invalid input)"
-// # define ERR_PARSE_3 "error in get_dimension (invalid map size)"
+# define ERR_PARSE_3 "error in get_dimension (invalid map size)"
 # define ERR_PARSE_4 "error in allocate_map (malloc error)"
 # define ERR_PARSE_5 "error in fill_map (invalid input)"
 # define ERR_PARSE_6 "error in fill_map (invalid line size)"
 
-# define ERR_MLX_1 "error in fdf (fail to establish connection with the X-Server)"
+# define ERR_MLX_1 "error in fdf (fail to establish connection with X-Server)"
 # define ERR_MLX_2 "error in fdf (fail to create a window)"
 # define ERR_MLX_3 "error in fdf (fail to create an image)"
 # define ERR_MLX_4 "error in fdf (fail to update image)"

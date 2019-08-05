@@ -6,14 +6,14 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/16 23:56:16 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/29 13:23:57 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:15:02 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-void	fdf_init(t_fdf *f)
+void		fdf_init(t_fdf *f)
 {
 	f->pix = 4;
 	f->end = 0;
@@ -52,7 +52,7 @@ t_point		normal_init(int x, int y, int z, t_fdf *f)
 t_point		iso_init(int x, int y, int z, t_fdf *f)
 {
 	t_point	ret;
-	
+
 	x *= f->zoom;
 	y *= f->zoom;
 	z *= f->zoom * f->distortion_z;
@@ -75,11 +75,11 @@ t_point		coord_init(int x, int y, int z, t_fdf *f)
 {
 	if (f->projection_type == 0)
 		return (normal_init(x, y, z, f));
-	else 
+	else
 		return (iso_init(x, y, z, f));
 }
 
-void	bresenham_init(t_point *start, t_point *end, t_bresenham *b)
+void		bresenham_init(t_point *start, t_point *end, t_bresenham *b)
 {
 	b->delta_x = end->x - start->x;
 	b->delta_y = end->y - start->y;

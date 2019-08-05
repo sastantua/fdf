@@ -6,11 +6,12 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 14:17:48 by nivergne          #+#    #+#             */
-/*   Updated: 2019/07/29 17:53:42 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/05 19:17:58 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 
 int				check_digit(char c)
 {
