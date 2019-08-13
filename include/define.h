@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 23:13:15 by nivergne          #+#    #+#             */
-/*   Updated: 2019/08/05 18:52:40 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/06 22:28:45 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define ERR_MLX_3 "error in fdf (fail to create an image)"
 # define ERR_MLX_4 "error in fdf (fail to update image)"
 
-# define WIN_HEIGHT 2000
-# define WIN_WIDTH 2000
+# define WIN_HEIGHT 1000
+# define WIN_WIDTH 1000
 # define IMG_HEIGHT 1000
 # define IMG_WIDTH 1000
 # define IMG_BITS (IMG_HEIGHT * IMG_WIDTH * 4)
@@ -52,8 +52,6 @@
 # define KEY_Q 0
 # define KEY_Z 13
 # define KEY_S 1
-# define KEY_E 14
-# define KEY_D 2
 # define KEY_R 15
 # define KEY_F 3
 # define KEY_T 17

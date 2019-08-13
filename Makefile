@@ -6,35 +6,55 @@
 #    By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/14 01:57:16 by nivergne          #+#    #+#              #
-#    Updated: 2019/08/05 18:48:56 by nivergne         ###   ########.fr        #
+#    Updated: 2019/08/13 02:27:40 by nivergne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC_FDF =			main.c\
-					error.c\
-					init_struct.c\
-					init_fd.c\
-					get_dimension.c\
-					parse_line.c\
-					allocate_map.c\
-					fill_map.c\
-					free_end.c\
-					fdf.c\
-					fdf_init.c\
-					bresenham.c\
-					event_handler.c\
-					debug.c
+SRC_PATH := src/
+OBJ_PATH := obj/
+INC_PATH := include/
 
 INC_FDF =			define.h\
 					fdf.h
 
-INC_FDF := $(addprefix include/, $(INC_FDF))
-SRC = $(addprefix $(SRC_PATH)/, $(SRC_FDF))
-OBJ = $(SRC:src/%.c=obj/%.o)
+INC_FDF := $(addprefix $(INC_PATH), $(INC_FDF))
 
-SRC_PATH = src/
+SRC_GENERAL =		main.c\
+					error.c\
+					debug.c\
+					free_end.c
+
+SRC_GENERAL := $(addprefix general/, $(SRC_GENERAL))
+OBJ_GENERAL := $(addprefix general/, $(addsuffix .o, $(basename $(notdir $(SRC_GENERAL)))))
+
+SRC_PARSE =			init_fd.c\
+					init_struct.c\
+					get_dimension.c\
+					allocate_map.c\
+					parse_line.c\
+					fill_map.c
+
+SRC_PARSE := $(addprefix parse/, $(SRC_PARSE))
+OBJ_PARSE := $(addprefix parse/, $(addsuffix .o, $(basename $(notdir $(SRC_PARSE)))))
+
+SRC_DISPLAY =		fdf.c\
+					fdf_init.c\
+					bresenham.c\
+					event_handler.c\
+
+SRC_DISPLAY := $(addprefix display/, $(SRC_DISPLAY))
+OBJ_DISPLAY := $(addprefix display/, $(addsuffix .o, $(basename $(notdir $(SRC_DISPLAY)))))
+
+SRC := $(addprefix $(SRC_PATH), $(SRC_GENERAL))
+SRC += $(addprefix $(SRC_PATH), $(SRC_PARSE))
+SRC += $(addprefix $(SRC_PATH), $(SRC_DISPLAY))
+
+OBJ := $(addprefix $(OBJ_PATH), $(OBJ_GENERAL))
+OBJ += $(addprefix $(OBJ_PATH), $(OBJ_PARSE))
+OBJ += $(addprefix $(OBJ_PATH), $(OBJ_DISPLAY))
+
 INC = -I./include 
 INC_PATH = -Iinclude/ -Ilibft/include -Imlx/
 MLX = -framework OpenGL -framework AppKit -lmlx
@@ -86,6 +106,10 @@ fsanitize: makelib obj $(LIB) $(OBJ)
 
 obj:
 	@mkdir -p obj
+	@mkdir -p obj/general
+	@mkdir -p obj/parse
+	@mkdir -p obj/display
+
 
 clean_lib:
 	@make -C libft clean

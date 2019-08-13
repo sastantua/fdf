@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_dimension.c                                    :+:      :+:    :+:   */
+/*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/11 17:17:01 by nivergne          #+#    #+#             */
-/*   Updated: 2019/08/05 19:19:01 by nivergne         ###   ########.fr       */
+/*   Created: 2019/07/12 14:17:48 by nivergne          #+#    #+#             */
+/*   Updated: 2019/08/13 01:43:22 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
-int		get_dimension(t_fdf *f)
+int				check_digit(char c)
 {
-	f->x_max = 0;
-	if (!(get_next_line(f->fd, &f->line) > 0))
-		return (-1);
-	f->y_max = 1;
-	f->x_max = parse_line(f->line);
-	while (get_next_line(f->fd, &f->line) != 0)
-	{
-		if (parse_line(f->line) == -1)
-			return (gnl_error_free(&f->line, ERR_PARSE_2));
-		f->y_max++;
-	}
-	ft_strdel(&f->line);
-	if (f->x_max < 1 || f->y_max < 1)
-		return (error_msg(ERR_PARSE_3));
+	if ((c >= '0' && c <= '9') || c == '-')
+		return (1);
 	return (0);
+}
+
+int				parse_line(char *line)
+{
+	int	i;
+	int	j;
+	int	ret;
+
+	i = 0;
+	j = 0;
+	ret = 0;
+	while (line[i])
+	{
+		while (line[i] && check_digit(line[i]))
+			i++;
+		while (line[i] && ft_strncmp(line + i, ",0xFFFFFF", 8) == 0)
+			i += 10;
+		while (line[i] && line[i] == ' ')
+			i++;
+		ret++;
+		j++;
+	}
+	return (ret);
 }
