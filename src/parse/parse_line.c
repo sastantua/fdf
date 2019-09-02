@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/12 14:17:48 by nivergne          #+#    #+#             */
-/*   Updated: 2019/08/13 01:43:22 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/09/02 23:22:35 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				parse_line(char *line)
 	i = 0;
 	j = 0;
 	ret = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		while (line[i] && check_digit(line[i]))
 			i++;

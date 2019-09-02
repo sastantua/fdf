@@ -6,7 +6,7 @@
 /*   By: nivergne <nivergne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/11 17:17:01 by nivergne          #+#    #+#             */
-/*   Updated: 2019/08/05 19:14:11 by nivergne         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:07:49 by nivergne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int			fill_map(t_fdf *f)
 		if (y != 0 && parse_line(f->line) != f->x_max)
 			return (gnl_error_free(&f->line, ERR_PARSE_6));
 		take_line(y, f->line, f);
+		ft_strdel(&f->line);
 		y++;
 	}
 	if (f->line)
